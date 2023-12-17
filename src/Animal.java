@@ -1,65 +1,62 @@
-public class Animal {
+abstract class Animal {
     private String name;
     private int age;
     private double weight;
     private String color;
 
-    public Animal(String name, int age, double weight, String color) {
-        this.name = name;
-        this.age = age;
-        this.weight = weight;
-        this.color = color;
-    }
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getAge() {
         return age;
     }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public double getWeight() {
         return weight;
+    }
+
+    public String getColor() { return color; }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public void setWeight(double weight) {
         this.weight = weight;
     }
 
-    public String getColor() {
-        return color;
-    }
+    public void setColor(String color) { this.color = color; }
 
-    public void setColor(String color) {
-        this.color = color;
-    }
+    public abstract void Say();
 
-    public void say() {
-        System.out.println("Я говорю");
-    }
-
-    public void go() {
+    public void Go() {
         System.out.println("Я иду");
     }
 
-    public void drink() {
+    public void Drink() {
         System.out.println("Я пью");
     }
 
-    public void eat() {
+    public void Eat() {
         System.out.println("Я ем");
     }
     @Override
     public String toString() {
-        String years = age == 1 ? "год" : (age >= 2 && age <= 4) ? "года" : "лет";
-        return "Привет! меня зовут " + name + ", мне " + age + " " + years + ", я вешу - " + weight + " кг, мой цвет - " + color;
+        String ageStr;
+        if (age % 10 == 1 && age != 11) {
+            ageStr = age + " год";
+        } else if (age % 10 >= 2 && age % 10 <= 4 && !(age >= 12 && age <= 14)) {
+            ageStr = age + " года";
+        } else {
+            ageStr = age + " лет";
+        }
+        return "Привет! меня зовут " + name + ", мне " + ageStr + ", я вешу - " + weight + " кг, мой цвет - " + color;
     }
+
+    public abstract void Fly();
 }
