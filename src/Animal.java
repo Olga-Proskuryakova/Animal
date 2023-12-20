@@ -16,7 +16,8 @@ abstract class Animal {
         return weight;
     }
 
-    public String getColor() { return color; }
+    public String getColor() {
+        return color; }
 
     public void setName(String name) {
         this.name = name;
@@ -32,7 +33,7 @@ abstract class Animal {
 
     public void setColor(String color) { this.color = color; }
 
-    public abstract void Say();
+    public abstract void say();
 
     public void Go() {
         System.out.println("Я иду");
@@ -57,6 +58,4 @@ abstract class Animal {
         }
         return "Привет! меня зовут " + name + ", мне " + ageStr + ", я вешу - " + weight + " кг, мой цвет - " + color;
     }
-
-    public abstract void Fly();
 }

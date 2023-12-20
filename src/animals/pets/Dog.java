@@ -1,11 +1,8 @@
+package animals.pets;
+
 public class Dog extends Animal {
     @Override
-    public void Say() {
+    public void say() {
         System.out.println("Гав");
-    }
-
-    @Override
-    public void Fly() {
-
     }
 }

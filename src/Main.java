@@ -2,9 +2,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args) {
         ArrayList<Animal> animalList = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
+        AnimalFactory animalFactory = new AnimalFactory();
 
         while (true) {
             System.out.println("Введите команду (add/list/exit):");
@@ -21,40 +23,40 @@ public class Main {
 
             switch (command) {
                 case ADD:
-                    System.out.println("Введите тип животного (cat/dog/duck):");
-                    String type = scanner.nextLine().toLowerCase();
-
-                    Animal animal;
-
-                    switch (type) {
-                        case "cat":
-                            animal = new Cat();
+                    String type;
+                    while (true) {
+                        System.out.println("Введите тип животного (cat/dog/duck):");
+                        type = scanner.nextLine().toLowerCase();
+                        if ("cat".equals("cat") || type.equals("dog") || type.equals("duck")) {
                             break;
-                        case "dog":
-                            animal = new Dog();
-                            break;
-                        case "duck":
-                            animal = new Duck();
-                            break;
-                        default:
+                        } else {
                             System.out.println("Некорректный тип животного!");
-                            continue;
+                        }
+                    }
+
+                    Animal animal = animalFactory.createAnimal(type);
+                    if (animal == null) {
+                        continue;
                     }
 
                     System.out.println("Введите имя:");
                     animal.setName(scanner.nextLine());
-
+                    
                     System.out.println("Введите возраст:");
                     animal.setAge(Integer.parseInt(scanner.nextLine()));
+                    int age = animalFactory.readAge(scanner);
+                    animal.setAge(age);
 
                     System.out.println("Введите вес:");
                     animal.setWeight(Double.parseDouble(scanner.nextLine()));
+                    double weight = animalFactory.readWeight(scanner);
+                    animal.setWeight(weight);
 
                     System.out.println("Введите цвет:");
                     animal.setColor(scanner.nextLine());
 
                     animalList.add(animal);
-                    animal.Say();
+                    animal.say();
                     break;
                 case LIST:
                     for (Animal a : animalList) {
@@ -63,7 +65,13 @@ public class Main {
                     break;
                 case EXIT:
                     System.exit(0);
+                default:
+                    throw new IllegalStateException("Unexpected value: " + command);
             }
         }
+    }
+
+    public static void setAnimalFactory(factory.AnimalFactory animalFactory) {
+        Main.animalFactory = animalFactory;
     }
 }
