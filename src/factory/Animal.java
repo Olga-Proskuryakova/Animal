@@ -1,4 +1,6 @@
-abstract class Animal {
+package factory;
+
+public abstract class Animal {
     private String name;
     private int age;
     private double weight;

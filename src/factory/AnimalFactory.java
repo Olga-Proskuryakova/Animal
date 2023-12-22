@@ -1,9 +1,13 @@
 package factory;
 
+import animals.Duck;
+import animals.pets.Cat;
+import animals.pets.Dog;
+
 import java.util.Scanner;
 
 public class AnimalFactory {
-    public Animal createAnimal(String type) {
+    public static Animal createAnimal(String type) {
         switch (type) {
             case "cat":
                 return new Cat();
@@ -22,8 +26,10 @@ public class AnimalFactory {
             try {
                 System.out.println("Введите возраст:");
                 age = Integer.parseInt(scanner.nextLine());
-                if (age >= 0) {
+                if (age >= 0 && age < 30) {
                     break;
+                } else if (age >= 30) {
+                    System.out.println("Животные столько не живут");
                 } else {
                     System.out.println("Некорректный ввод! Возраст должен быть неотрицательным.");
                 }
@@ -40,8 +46,11 @@ public class AnimalFactory {
             try {
                 System.out.println("Введите вес:");
                 weight = Double.parseDouble(scanner.nextLine());
-                if (weight >= 0) {
+                if (weight >= 0 && weight < 30) {
                     break;
+                } else if (weight >= 30) {
+                    System.out.println("Животные столько не живут");
+
                 } else {
                     System.out.println("Некорректный ввод! Вес должен быть неотрицательным.");
                 }

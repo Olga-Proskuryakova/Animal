@@ -1,7 +1,12 @@
+import factory.Animal;
+import factory.AnimalFactory;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
+
+    private static AnimalFactory animalFactory;
 
     public static void main(String[] args) {
         ArrayList<Animal> animalList = new ArrayList<>();
@@ -34,7 +39,7 @@ public class Main {
                         }
                     }
 
-                    Animal animal = animalFactory.createAnimal(type);
+                    Animal animal = AnimalFactory.createAnimal(type);
                     if (animal == null) {
                         continue;
                     }
@@ -42,13 +47,13 @@ public class Main {
                     System.out.println("Введите имя:");
                     animal.setName(scanner.nextLine());
                     
-                    System.out.println("Введите возраст:");
-                    animal.setAge(Integer.parseInt(scanner.nextLine()));
+                    //System.out.println("Введите возраст:");
+                    //animal.setAge(Integer.parseInt(scanner.nextLine()));
                     int age = animalFactory.readAge(scanner);
                     animal.setAge(age);
 
-                    System.out.println("Введите вес:");
-                    animal.setWeight(Double.parseDouble(scanner.nextLine()));
+                    //System.out.println("Введите вес:");
+                    //animal.setWeight(Double.parseDouble(scanner.nextLine()));
                     double weight = animalFactory.readWeight(scanner);
                     animal.setWeight(weight);
 
